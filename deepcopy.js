@@ -4,6 +4,7 @@
  * Released under the MIT license.
  */
 
+/*eslint-env amd*/
 
 /**
  * export to AMD/CommonJS/global.
@@ -90,7 +91,9 @@
         }
 
         for (key in obj) {
-          obj.hasOwnProperty(key) && keys.push(key);
+          if (obj.hasOwnProperty(key)) {
+            keys.push(key);
+          }
         }
 
         return keys;
@@ -137,7 +140,7 @@
    * @param {Array} reference
    * @return {*} copied value.
    */
-  function copyValue_(value, clone, visited, reference) {
+  function copy(value, clone, visited, reference) {
     var str, pos, buf, keys, i, len, key, val, idx, obj, ref;
 
     // number, string, boolean, null, undefined, function and symbol.
@@ -206,7 +209,7 @@
         }
       }
 
-      clone[key] = ref || copyValue_(val, obj, visited, reference);
+      clone[key] = ref || copy(val, obj, visited, reference);
     }
 
     return clone;
@@ -222,7 +225,7 @@
         visited = [value],
         reference = [clone];
 
-    return copyValue_(value, clone, visited, reference);
+    return copy(value, clone, visited, reference);
   }
 
   return deepcopy;

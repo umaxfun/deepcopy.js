@@ -1,4 +1,6 @@
-(function() {
+/*eslint-env mocha*/
+
+(function(){
 
   'use strict';
 
@@ -34,13 +36,13 @@
       });
 
       it('should return Date', function() {
-        var date = new Date;
+        var date = new Date();
 
         assert(+deepcopy(date) === +date);
       });
 
       it('should return RegExp', function() {
-        var regexp = new RegExp;
+        var regexp = new RegExp();
 
         assert(String(deepcopy(regexp)) === String(regexp));
       });
@@ -130,19 +132,19 @@
     describe('check for duplicate function', function() {
 
       it('should return array, it has duplicate function', function() {
+        function fn() {}
+
         var array = [fn, fn],
             copy = deepcopy(array);
-
-        function fn() {}
 
         assert(copy[0] === copy[1]);
       });
 
       it('should return object, it has duplicate function', function() {
+        function fn() {}
+
         var object = { a: fn, b: fn },
             copy = deepcopy(object);
-
-        function fn() {}
 
         assert(copy.a === copy.b);
       });
