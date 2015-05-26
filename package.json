@@ -18,8 +18,7 @@
   },
   "scripts": {
     "bower": "bower install",
-    "fix": "fixjsstyle --flagfile .closurelinter -r .",
-    "lint": "gjslint --flagfile .closurelinter -r .",
+    "lint": "eslint .",
     "minify": "uglifyjs ./deepcopy.js --comments '@license' -cm -r deepcopy -o ./deepcopy.min.js",
     "power": "espower ./test/test.js > ./test/test.pwr.js",
     "test": "mocha ./test/test.js",
@@ -28,6 +27,7 @@
   },
   "devDependencies": {
     "bower": "~1.4",
+    "eslint": "^0.21.2",
     "espower-cli": "~0.2",
     "intelli-espower-loader": "~0.6",
     "mocha": "~2.2",
