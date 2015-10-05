@@ -145,6 +145,10 @@
       return value;
     }
 
+    if (typeof value === "object" && value != null && value.hasOwnProperty("_bsontype")) {
+      return value.toHexString();
+    }
+    
     // Date.
     if (util.isDate(value)) {
       // Firefox need to convert to Number
